@@ -20,6 +20,8 @@ Open `http://localhost:4000`.
 - Add a title, description, type, and path to `_data/resources.yml`.
 - Commit and push to `main`. GitHub Pages rebuilds the site automatically.
 
+The repository includes `.github/workflows/pages.yml`, which builds the Jekyll site and deploys it from `main`. In the repository Settings, set Pages to use **GitHub Actions** once; later pushes need no extra configuration.
+
 ## Post metadata
 
 The archive reads these optional front-matter fields:
