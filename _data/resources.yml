@@ -1,0 +1,10 @@
+documents:
+  - title: Site notes
+    description: The short guide for adding posts and files.
+    type: Markdown
+    path: /resources/README/
+source:
+  - title: A tiny Lean example
+    description: A source file kept next to the notes about it.
+    type: Lean
+    path: /resources/source/hello.lean

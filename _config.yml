@@ -1,0 +1,27 @@
+title: Linmuidanya
+description: Notes, projects, and things worth sharing.
+url: https://linmuidanya.github.io
+baseurl: ""
+repository: linmuidanya/linmuidanya.github.io
+timezone: Asia/Shanghai
+markdown: kramdown
+permalink: /notes/:year/:month/:day/:title/
+future: true
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - node_modules
+  - package.json
+  - package-lock.json
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      type: Note
+      reading_time: 5 min
+---
