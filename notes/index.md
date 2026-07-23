@@ -7,7 +7,7 @@ permalink: /notes/
 <section class="shell page-intro">
   <p class="eyebrow">01 / Writing</p>
   <h1>Notes from the workbench.</h1>
-  <p>Short essays, explanations, and working notes. Each one starts as a Markdown file in <code>_posts/</code>, with metadata that keeps the archive easy to scan.</p>
+  <p>Short essays, explanations, and working notes. Each one starts as a Markdown file in <code>resources/posts/</code>, with metadata that keeps the archive easy to scan.</p>
 </section>
 
 {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}

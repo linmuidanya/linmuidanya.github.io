@@ -9,7 +9,7 @@ This folder is for files you want people to open directly.
 
 ## Add a blog post
 
-Create `_posts/YYYY-MM-DD-short-title.md` with front matter like this:
+Create `resources/posts/my-topic.md` with front matter like this:
 
 ```yaml
 ---
@@ -19,7 +19,7 @@ tags: [topic]
 ---
 ```
 
-Write the post below the closing `---`, commit, and push. Jekyll builds it automatically.
+Write the post below the closing `---`, commit, and push. The build reads Git history for its creation and modification dates, generates the Jekyll post, and publishes it automatically. The filename does not need a date.
 
 ## Add a PDF, image, or source file
 
@@ -41,6 +41,6 @@ tags: [lean, mathematics]
 ---
 ```
 
-Use the same pattern in `assets/images/` or `resources/source/`. The Pages workflow runs `scripts/build_resources.rb` before Jekyll, finds matching pairs, and regenerates `_data/resources.yml`. You do not edit that generated file.
+Use the same pattern in `resources/images/` or `resources/source/`. For a standalone Markdown document, put the file in `resources/markdown/` with its own front matter. The Pages workflow runs `scripts/build_resources.rb` before Jekyll, finds matching pairs, creates preview pages, and regenerates `_data/resources.yml`. You do not edit that generated file.
 
-The site has no database and no upload service. Git is the source of truth, which means every update is reviewable and reversible.
+Clicking a resource opens its generated preview: PDFs are embedded, images are shown directly, source files are loaded into a readable code block, and Markdown is rendered as HTML. The site has no database and no upload service. Git is the source of truth, which means every update is reviewable and reversible.

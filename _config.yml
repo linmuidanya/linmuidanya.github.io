@@ -7,6 +7,9 @@ timezone: Asia/Shanghai
 markdown: kramdown
 permalink: /notes/:year/:month/:day/:title/
 future: true
+collections:
+  resource_previews:
+    output: true
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -15,9 +18,11 @@ exclude:
   - node_modules
   - package.json
   - package-lock.json
+  - resources/posts
   - resources/documents/*.md
   - resources/source/*.md
-  - assets/images/*.md
+  - resources/images/*.md
+  - resources/markdown/*.md
 
 defaults:
   - scope:

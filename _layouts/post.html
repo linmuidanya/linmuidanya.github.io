@@ -3,17 +3,25 @@ layout: default
 ---
 <article class="shell article">
   <header class="article-header">
-    <p class="eyebrow">{{ page.type | default: "Note" }} <span class="eyebrow-separator">/</span> {{ page.date | date: "%d %B %Y" }}{% if page.reading_time %} <span class="eyebrow-separator">/</span> {{ page.reading_time }}{% endif %}</p>
+    <p class="eyebrow">{{ page.type | default: "Note" }} <span class="eyebrow-separator">/</span> Created {{ page.created_at | default: page.date | date: "%d %B %Y" }}{% if page.updated_at and page.updated_at != page.created_at %} <span class="eyebrow-separator">/</span> Updated {{ page.updated_at | date: "%d %B %Y" }}{% endif %}{% if page.reading_time %} <span class="eyebrow-separator">/</span> {{ page.reading_time }}{% endif %}</p>
     <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="article-dek">{{ page.description }}</p>{% endif %}
-    {% if page.tags %}<div class="tag-list article-tags" aria-label="Tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>{% endif %}
+    {% if page.tags %}<div class="tag-list article-tags" aria-label="Tags">{% for tag in page.tags %}<a class="tag" href="{{ '/notes/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% endfor %}</div>{% endif %}
   </header>
   <div class="article-layout">
     <div class="prose">{{ content }}</div>
     <aside class="article-aside">
       <a class="back-link" href="{{ '/notes/' | relative_url }}"><span aria-hidden="true">←</span> All writing</a>
       <p class="aside-label">Source</p>
-      <a href="https://github.com/{{ site.repository }}/blob/main/_posts/{{ page.path | split: '/' | last }}" target="_blank" rel="noreferrer">Edit this post <span aria-hidden="true">↗</span></a>
+      <a href="https://github.com/{{ site.repository }}/blob/main/{{ page.source_path | default: page.path }}" target="_blank" rel="noreferrer">Edit this post <span aria-hidden="true">↗</span></a>
+      {% if page.history.size > 0 %}
+        <p class="aside-label">Revision history</p>
+        <ol class="revision-list">
+          {% for revision in page.history %}
+            <li><a href="https://github.com/{{ site.repository }}/commit/{{ revision.commit }}" target="_blank" rel="noreferrer"><time datetime="{{ revision.date }}">{{ revision.date | date: "%d %b %Y" }}</time><span>{{ revision.message }}</span></a></li>
+          {% endfor %}
+        </ol>
+      {% endif %}
     </aside>
   </div>
 </article>

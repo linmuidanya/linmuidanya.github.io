@@ -21,5 +21,20 @@
     if (empty) empty.hidden = visible !== 0;
   };
 
-  buttons.forEach((button) => button.addEventListener("click", () => applyFilter(button.dataset.filter)));
+  const selectFilter = (filter, updateUrl) => {
+    const available = buttons.some((button) => button.dataset.filter === filter);
+    const selected = available ? filter : "all";
+    applyFilter(selected);
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (selected === "all") url.searchParams.delete("tag");
+      else url.searchParams.set("tag", selected);
+      window.history.pushState({ tag: selected }, "", url);
+    }
+  };
+
+  buttons.forEach((button) => button.addEventListener("click", () => selectFilter(button.dataset.filter, true)));
+  window.addEventListener("popstate", () => selectFilter(new URLSearchParams(window.location.search).get("tag") || "all", false));
+  selectFilter(new URLSearchParams(window.location.search).get("tag") || "all", false);
 })();

@@ -7,14 +7,14 @@ permalink: /resources/
 <section class="shell page-intro">
   <p class="eyebrow">02 / Resources</p>
   <h1>Things worth opening.</h1>
-  <p>Keep each file beside a Markdown sidecar that describes it. The build reads those sidecars and updates this shelf automatically.</p>
+  <p>Keep each file beside a Markdown sidecar that describes it. The build reads those sidecars, creates a preview page, and updates this shelf automatically.</p>
 </section>
 
 <section class="shell resource-section" id="documents">
   <div class="resource-section-heading"><span class="resource-icon resource-icon-pdf">PDF</span><h2>Documents</h2></div>
   <div class="resource-grid">
     {% for item in site.data.resources.documents %}
-      <a class="resource-card" href="{{ item.path | relative_url }}">
+      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
         <span class="resource-card-type">{{ item.type }}</span>
         <strong>{{ item.title }}</strong>
         <span>{{ item.description }}</span>
@@ -30,7 +30,8 @@ permalink: /resources/
   <div class="resource-section-heading"><span class="resource-icon resource-icon-image">IMG</span><h2>Images</h2></div>
   <div class="resource-grid">
     {% for item in site.data.resources.images %}
-      <a class="resource-card" href="{{ item.path | relative_url }}">
+      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
+        {% if item.kind == "image" %}<img class="resource-card-thumb" src="{{ item.path | relative_url }}" alt="">{% endif %}
         <span class="resource-card-type">{{ item.type }}</span>
         <strong>{{ item.title }}</strong>
         <span>{{ item.description }}</span>
@@ -39,14 +40,30 @@ permalink: /resources/
       </a>
     {% endfor %}
   </div>
-  <p class="resource-hint">Put <code>diagram.png</code> and <code>diagram.md</code> together in <code>assets/images/</code>.</p>
+  <p class="resource-hint">Put <code>diagram.png</code> and <code>diagram.md</code> together in <code>resources/images/</code>.</p>
+</section>
+
+<section class="shell resource-section" id="markdown">
+  <div class="resource-section-heading"><span class="resource-icon resource-icon-markdown">MD</span><h2>Markdown</h2></div>
+  <div class="resource-grid">
+    {% for item in site.data.resources.markdown %}
+      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
+        <span class="resource-card-type">{{ item.type }}</span>
+        <strong>{{ item.title }}</strong>
+        <span>{{ item.description }}</span>
+        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+    {% endfor %}
+  </div>
+  <p class="resource-hint">Put standalone Markdown files in <code>resources/markdown/</code>.</p>
 </section>
 
 <section class="shell resource-section" id="source">
   <div class="resource-section-heading"><span class="resource-icon resource-icon-code">&lt;/&gt;</span><h2>Source code</h2></div>
   <div class="resource-grid">
     {% for item in site.data.resources.source %}
-      <a class="resource-card" href="{{ item.path | relative_url }}">
+      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
         <span class="resource-card-type">{{ item.type }}</span>
         <strong>{{ item.title }}</strong>
         <span>{{ item.description }}</span>

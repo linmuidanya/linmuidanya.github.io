@@ -8,6 +8,8 @@ Install Ruby and Bundler, then run:
 
 ```sh
 bundle install
+ruby scripts/build_posts.rb
+ruby scripts/build_resources.rb
 bundle exec jekyll serve
 ```
 
@@ -15,12 +17,13 @@ Open `http://localhost:4000`.
 
 ## The update workflow
 
-- Add a post to `_posts/YYYY-MM-DD-title.md`.
-- Put a file and same-named Markdown sidecar together in `resources/documents/`, `assets/images/`, or `resources/source/`.
+- Add a post to `resources/posts/any-clear-name.md`; a date is not required in the filename.
+- Put a file and same-named Markdown sidecar together in `resources/documents/`, `resources/images/`, or `resources/source/`.
+- Put standalone Markdown documents in `resources/markdown/`.
 - Add `title`, `description`, `type`, and optional `tags` to the sidecar front matter.
 - Commit and push to `main`. GitHub Pages rebuilds the site automatically.
 
-The repository includes `.github/workflows/pages.yml`, which regenerates `_data/resources.yml`, builds the Jekyll site, and deploys it from `main`. In the repository Settings, set Pages to use **GitHub Actions** once; later pushes need no extra configuration.
+The repository includes `.github/workflows/pages.yml`, which derives post dates from Git history, generates resource preview pages, regenerates `_data/resources.yml`, builds the Jekyll site, and deploys it from `main`. In the repository Settings, set Pages to use **GitHub Actions** once; later pushes need no extra configuration.
 
 ## Post metadata
 
@@ -37,5 +40,7 @@ tags: [lean, mathematics]
 ```
 
 Tags become filter buttons on the Writing page. If `type` or `reading_time` is omitted, the template uses `Note` and `5 min`.
+
+Post creation time, latest modification time, and revision history come from Git automatically. You do not need to put a date in the filename.
 
 The current course website checkout is intentionally separate from this folder.
