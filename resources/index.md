@@ -7,7 +7,7 @@ permalink: /resources/
 <section class="shell page-intro">
   <p class="eyebrow">02 / Resources</p>
   <h1>Things worth opening.</h1>
-  <p>Keep the file itself in the repository, then add one entry to <code>_data/resources.yml</code>. PDFs open in the browser; source files remain easy to download or inspect on GitHub.</p>
+  <p>Keep each file beside a Markdown sidecar that describes it. The build reads those sidecars and updates this shelf automatically.</p>
 </section>
 
 <section class="shell resource-section" id="documents">
@@ -18,11 +18,28 @@ permalink: /resources/
         <span class="resource-card-type">{{ item.type }}</span>
         <strong>{{ item.title }}</strong>
         <span>{{ item.description }}</span>
+        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
         <span class="card-arrow" aria-hidden="true">↗</span>
       </a>
     {% endfor %}
   </div>
-  <p class="resource-hint">Put PDFs in <code>resources/documents/</code>, then link them here.</p>
+  <p class="resource-hint">Put <code>lecture-notes.pdf</code> and <code>lecture-notes.md</code> together in <code>resources/documents/</code>.</p>
+</section>
+
+<section class="shell resource-section" id="images">
+  <div class="resource-section-heading"><span class="resource-icon resource-icon-image">IMG</span><h2>Images</h2></div>
+  <div class="resource-grid">
+    {% for item in site.data.resources.images %}
+      <a class="resource-card" href="{{ item.path | relative_url }}">
+        <span class="resource-card-type">{{ item.type }}</span>
+        <strong>{{ item.title }}</strong>
+        <span>{{ item.description }}</span>
+        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+    {% endfor %}
+  </div>
+  <p class="resource-hint">Put <code>diagram.png</code> and <code>diagram.md</code> together in <code>assets/images/</code>.</p>
 </section>
 
 <section class="shell resource-section" id="source">
@@ -33,9 +50,10 @@ permalink: /resources/
         <span class="resource-card-type">{{ item.type }}</span>
         <strong>{{ item.title }}</strong>
         <span>{{ item.description }}</span>
+        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
         <span class="card-arrow" aria-hidden="true">↗</span>
       </a>
     {% endfor %}
   </div>
-  <p class="resource-hint">Keep examples in <code>resources/source/</code> or link to another repository.</p>
+  <p class="resource-hint">Keep <code>hello.lean</code> and <code>hello.md</code> together in <code>resources/source/</code>.</p>
 </section>

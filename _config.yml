@@ -15,6 +15,9 @@ exclude:
   - node_modules
   - package.json
   - package-lock.json
+  - resources/documents/*.md
+  - resources/source/*.md
+  - assets/images/*.md
 
 defaults:
   - scope:

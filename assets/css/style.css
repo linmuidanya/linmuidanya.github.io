@@ -99,7 +99,7 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
 .row-arrow { color: var(--coral); font-size: 1.1rem; text-align: right; }
 .empty-state { color: var(--ink-muted); }
 
-.resource-teasers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.resource-teasers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .resource-teaser { display: flex; align-items: center; gap: 17px; padding: 22px; border: 1px solid var(--line); background: #fbfaf7; }
 .resource-teaser:hover { border-color: var(--teal); }
 .resource-teaser strong, .resource-teaser small { display: block; }
@@ -107,6 +107,7 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
 .resource-teaser small { margin-top: 3px; color: var(--ink-soft); font-size: 0.82rem; }
 .resource-icon { display: inline-grid; flex: 0 0 auto; place-items: center; width: 45px; height: 45px; border: 1px solid currentColor; font: 700 0.66rem var(--mono); }
 .resource-icon-pdf { color: var(--coral); }
+.resource-icon-image { color: #946d10; }
 .resource-icon-code { color: var(--teal); font-size: 0.82rem; }
 
 .closing-band { border-top: 1px solid var(--line); background: var(--ink); color: #f5f2e8; }
@@ -163,7 +164,8 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
 .resource-card:hover { border-color: var(--teal); }
 .resource-card-type { color: var(--coral); font: 0.68rem var(--mono); letter-spacing: 0.09em; text-transform: uppercase; }
 .resource-card strong { margin-top: 6px; font: 500 1.24rem/1.2 var(--serif); }
-.resource-card > span:not(.resource-card-type):not(.card-arrow) { color: var(--ink-soft); font-size: 0.84rem; line-height: 1.45; }
+.resource-card > span:not(.resource-card-type):not(.card-arrow):not(.resource-tags) { color: var(--ink-soft); font-size: 0.84rem; line-height: 1.45; }
+.resource-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 12px; padding-right: 28px; }
 .card-arrow { position: absolute; right: 21px; bottom: 18px; color: var(--coral); }
 .resource-hint { margin: 16px 0 0; color: var(--ink-muted); font-size: 0.82rem; }
 
@@ -186,6 +188,7 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
   .article-aside { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 18px; }
   .aside-label { margin: 0 8px 0 auto; }
   .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .resource-teasers { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 500px) {

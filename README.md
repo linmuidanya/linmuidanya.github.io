@@ -16,11 +16,11 @@ Open `http://localhost:4000`.
 ## The update workflow
 
 - Add a post to `_posts/YYYY-MM-DD-title.md`.
-- Put PDFs in `resources/documents/` and source in `resources/source/`.
-- Add a title, description, type, and path to `_data/resources.yml`.
+- Put a file and same-named Markdown sidecar together in `resources/documents/`, `assets/images/`, or `resources/source/`.
+- Add `title`, `description`, `type`, and optional `tags` to the sidecar front matter.
 - Commit and push to `main`. GitHub Pages rebuilds the site automatically.
 
-The repository includes `.github/workflows/pages.yml`, which builds the Jekyll site and deploys it from `main`. In the repository Settings, set Pages to use **GitHub Actions** once; later pushes need no extra configuration.
+The repository includes `.github/workflows/pages.yml`, which regenerates `_data/resources.yml`, builds the Jekyll site, and deploys it from `main`. In the repository Settings, set Pages to use **GitHub Actions** once; later pushes need no extra configuration.
 
 ## Post metadata
 
