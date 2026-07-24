@@ -1,31 +1,33 @@
 ---
 layout: default
-title: Write Markdown
-description: Write and preview a Markdown document before publishing it through GitHub.
+title: Create File
+description: Create or edit a Markdown file before publishing it through GitHub.
 permalink: /write/
 ---
 <section class="shell page-intro editor-intro">
-  <p class="eyebrow">Write</p>
-  <h1>Markdown editor</h1>
+  <p class="eyebrow">Files</p>
+  <h1>Create file</h1>
 </section>
 
 <section class="shell editor" data-editor data-repository="{{ site.repository }}">
   <form class="editor-fields" data-editor-form>
-    <div class="editor-form-heading">
-      <h2>Document</h2>
-      <span data-save-status>Draft saved locally</span>
+    <div class="editor-meta-card">
+      <div class="editor-form-heading">
+        <h2>File details</h2>
+        <span data-save-status>Draft saved locally</span>
+      </div>
+
+      <div class="editor-meta-grid">
+        <label><span>Create as</span><select name="destination"><optgroup label="Create new"><option value="resources/markdown">Markdown document</option><option value="resources/posts">Blog post</option></optgroup><optgroup label="Describe an uploaded file"><option value="resources/documents">Existing PDF or document details</option><option value="resources/images">Existing image details</option><option value="resources/source">Existing source code details</option></optgroup></select></label>
+        <label><span>Filename</span><input name="filename" type="text" value="untitled" spellcheck="false" required><small>.md is added automatically</small></label>
+        <label class="editor-wide"><span>Title</span><input name="title" type="text" value="Untitled document" required></label>
+        <label class="editor-wide"><span>Description</span><input name="description" type="text" value="A short description of this document."></label>
+        <label><span>Type</span><input name="type" type="text" value="Markdown"></label>
+        <label><span>Tags</span><input name="tags" type="text" value="notes" placeholder="math, lean, notes"><small>Comma-separated</small></label>
+      </div>
     </div>
 
-    <div class="editor-meta-grid">
-      <label><span>Destination</span><select name="destination"><option value="resources/markdown">Markdown resource</option><option value="resources/posts">Blog post</option><option value="resources/documents">Document metadata</option><option value="resources/images">Image metadata</option><option value="resources/source">Source metadata</option></select></label>
-      <label><span>Filename</span><input name="filename" type="text" value="untitled" spellcheck="false" required><small>.md is added automatically</small></label>
-      <label class="editor-wide"><span>Title</span><input name="title" type="text" value="Untitled document" required></label>
-      <label class="editor-wide"><span>Description</span><input name="description" type="text" value="A short description of this document."></label>
-      <label><span>Type</span><input name="type" type="text" value="Markdown"></label>
-      <label><span>Tags</span><input name="tags" type="text" value="notes" placeholder="math, lean, notes"><small>Comma-separated</small></label>
-    </div>
-
-    <label class="editor-body-label"><span>Markdown</span><textarea name="body" data-editor-input spellcheck="true">## First section
+    <label class="editor-body-label"><span>Content</span><textarea name="body" data-editor-input spellcheck="true">## First section
 
 Write your Markdown here. Inline mathematics such as $e^{i\pi} + 1 = 0$ is rendered in the preview.
 

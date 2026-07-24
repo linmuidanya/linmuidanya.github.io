@@ -28,7 +28,7 @@
         <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-active"{% endif %}>Home</a>
         <a href="{{ '/notes/' | relative_url }}"{% if page.url contains '/notes' %} class="is-active"{% endif %}>Writing</a>
         <a href="{{ '/resources/' | relative_url }}"{% if page.url contains '/resources' %} class="is-active"{% endif %}>Resources</a>
-        <a href="{{ '/write/' | relative_url }}"{% if page.url contains '/write' %} class="is-active"{% endif %}>Write</a>
+        <a href="{{ '/write/' | relative_url }}"{% if page.url contains '/write' %} class="is-active"{% endif %}>Create File</a>
         <a href="https://github.com/{{ site.repository }}" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
       </nav>
     </div>

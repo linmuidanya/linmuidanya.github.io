@@ -12,7 +12,7 @@ permalink: /resources/
 
 <section class="shell resource-library" data-resource-filter-root>
   <div class="resource-library-toolbar">
-    <div><p class="filter-label">Browse by type</p><a class="resource-write-link" href="{{ '/write/' | relative_url }}">Write Markdown <span aria-hidden="true">→</span></a></div>
+    <div><p class="filter-label">Browse by type</p><a class="resource-write-link" href="{{ '/write/' | relative_url }}">Create file <span aria-hidden="true">→</span></a></div>
     <div class="filter-bar" data-resource-filter aria-label="Filter resources by type">
       <button class="filter-button is-active" type="button" data-resource-filter-value="all" aria-pressed="true">All</button>
       <button class="filter-button" type="button" data-resource-filter-value="documents" aria-pressed="false">Documents</button>

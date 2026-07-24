@@ -8,22 +8,24 @@ layout: default
       <div>
         <p class="eyebrow">{{ page.type }} / {{ page.category }}</p>
         <h1>{{ page.title }}</h1>
-        {% if page.description %}<p>{{ page.description }}</p>{% endif %}
       </div>
-      <dl class="resource-meta-panel">
-        <div><dt>Format</dt><dd>{{ page.type }}</dd></div>
-        <div><dt>Size</dt><dd>{{ page.size }}</dd></div>
-        <div><dt>Folder</dt><dd>{{ page.category }}</dd></div>
-      </dl>
+      <aside class="resource-meta-card" aria-label="File information">
+        {% if page.description %}<p class="resource-description">{{ page.description }}</p>{% endif %}
+        <dl class="resource-meta-panel">
+          <div><dt>Format</dt><dd>{{ page.type }}</dd></div>
+          <div><dt>Size</dt><dd>{{ page.size }}</dd></div>
+          <div><dt>Folder</dt><dd>{{ page.category }}</dd></div>
+        </dl>
+        {% if page.tags %}<div class="tag-list" aria-label="Tags">{% for tag in page.tags %}<a class="tag" href="{{ '/resources/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% endfor %}</div>{% endif %}
+      </aside>
     </div>
-    {% if page.tags %}<div class="tag-list" aria-label="Tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>{% endif %}
     <div class="resource-actions">
       {% if page.kind == "markdown" %}
         <a class="button button-primary" href="https://github.com/{{ site.repository }}/blob/main/{{ page.source_path }}" target="_blank" rel="noreferrer">View Markdown source <span aria-hidden="true">↗</span></a>
       {% else %}
         <a class="button button-primary" href="{{ page.file_path | relative_url }}" target="_blank" rel="noreferrer">Open original <span aria-hidden="true">↗</span></a>
       {% endif %}
-      <a class="text-link" href="{{ '/write/' | relative_url }}?path={{ page.source_path | url_encode }}" data-editor-content="{{ page.editor_content }}">Edit here <span aria-hidden="true">→</span></a>
+      <a class="text-link" href="{{ '/write/' | relative_url }}?path={{ page.source_path | url_encode }}" data-editor-content="{{ page.editor_content }}">Edit information <span aria-hidden="true">→</span></a>
     </div>
   </header>
 
@@ -62,7 +64,7 @@ layout: default
         <nav class="markdown-library" aria-label="Markdown resources">
           <p class="outline-label">Markdown library</p>
           {% for item in site.data.resources.markdown %}<a href="{{ item.preview_path | relative_url }}"{% if item.preview_path == page.preview_path %} class="is-active"{% endif %}>{{ item.title }}</a>{% endfor %}
-          <a class="markdown-library-new" href="{{ '/write/' | relative_url }}">+ New Markdown</a>
+          <a class="markdown-library-new" href="{{ '/write/' | relative_url }}">+ Create Markdown</a>
         </nav>
       {% endif %}
       <nav class="content-outline" data-outline data-outline-target="resource-readable-content" aria-label="On this page"></nav>
