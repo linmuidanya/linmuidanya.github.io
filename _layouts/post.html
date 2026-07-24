@@ -3,17 +3,23 @@ layout: default
 ---
 <article class="shell article">
   <header class="article-header">
-    <p class="eyebrow">{{ page.type | default: "Note" }} <span class="eyebrow-separator">/</span> Created {{ page.created_at | default: page.date | date: "%d %B %Y" }}{% if page.updated_at and page.updated_at != page.created_at %} <span class="eyebrow-separator">/</span> Updated {{ page.updated_at | date: "%d %B %Y" }}{% endif %}{% if page.reading_time %} <span class="eyebrow-separator">/</span> {{ page.reading_time }}{% endif %}</p>
+    <p class="eyebrow">{{ page.type | default: "Note" }}</p>
     <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="article-dek">{{ page.description }}</p>{% endif %}
-    {% if page.tags %}<div class="tag-list article-tags" aria-label="Tags">{% for tag in page.tags %}<a class="tag" href="{{ '/notes/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% endfor %}</div>{% endif %}
+    <div class="article-meta-strip">
+      <span>Created {{ page.created_at | default: page.date | date: "%d %B %Y" }}</span>
+      {% if page.updated_at and page.updated_at != page.created_at %}<span>Updated {{ page.updated_at | date: "%d %B %Y" }}</span>{% endif %}
+      {% if page.reading_time %}<span>{{ page.reading_time }}</span>{% endif %}
+      {% if page.tags %}<span class="tag-list article-tags" aria-label="Tags">{% for tag in page.tags %}<a class="tag" href="{{ '/notes/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
+    </div>
   </header>
   <div class="article-layout">
-    <div class="prose">{{ content }}</div>
+    <div class="prose" id="post-content">{{ content }}</div>
     <aside class="article-aside">
       <a class="back-link" href="{{ '/notes/' | relative_url }}"><span aria-hidden="true">←</span> All writing</a>
       <p class="aside-label">Source</p>
-      <a href="https://github.com/{{ site.repository }}/blob/main/{{ page.source_path | default: page.path }}" target="_blank" rel="noreferrer">Edit this post <span aria-hidden="true">↗</span></a>
+      <a href="{{ '/write/' | relative_url }}?path={{ page.source_path | url_encode }}" data-editor-content="{{ page.editor_content }}">Edit here <span aria-hidden="true">→</span></a>
+      <nav class="content-outline" data-outline data-outline-target="post-content" aria-label="On this page"></nav>
       {% if page.history.size > 0 %}
         <p class="aside-label">Revision history</p>
         <ol class="revision-list">
@@ -25,3 +31,4 @@ layout: default
     </aside>
   </div>
 </article>
+<script src="{{ '/assets/js/resource-preview.js' | relative_url }}" defer></script>

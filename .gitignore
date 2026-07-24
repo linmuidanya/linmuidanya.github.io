@@ -1,6 +1,8 @@
 _site/
 _posts/
 _resource_previews/
+.lake/
+lake-manifest.json
 .jekyll-cache/
 .sass-cache/
 .bundle/

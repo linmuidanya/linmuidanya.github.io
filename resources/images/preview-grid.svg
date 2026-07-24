@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Preview grid</title>
+  <desc id="desc">A simple grid used to test the image preview layout.</desc>
+  <rect width="960" height="540" fill="#f2f3f0"/>
+  <rect x="44" y="44" width="872" height="452" fill="#ffffff" stroke="#bdc5c0" stroke-width="2"/>
+  <path d="M112 400h736M112 328h736M112 256h736M112 184h736M112 112h736" stroke="#dfe2de" stroke-width="2"/>
+  <path d="M176 430V110M304 430V110M432 430V110M560 430V110M688 430V110M816 430V110" stroke="#dfe2de" stroke-width="2"/>
+  <path d="M126 390C230 344 286 362 365 286S505 156 598 230s112 32 220-90" fill="none" stroke="#32666a" stroke-width="9"/>
+  <circle cx="598" cy="230" r="12" fill="#8b5d50"/>
+  <text x="112" y="84" fill="#202625" font-family="sans-serif" font-size="26">resource preview fixture</text>
+</svg>

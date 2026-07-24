@@ -4,6 +4,7 @@
 # Git is the clock: the first commit supplies created_at, the latest commit
 # supplies updated_at, and every revision is included in the post metadata.
 require "date"
+require "base64"
 require "digest"
 require "fileutils"
 require "open3"
@@ -78,6 +79,7 @@ sources.each do |source_name|
   metadata["created_at"] = created_at
   metadata["updated_at"] = updated_at
   metadata["source_path"] = source.relative_path_from(ROOT).to_s
+  metadata["editor_content"] = Base64.strict_encode64(source.read)
   metadata["history"] = history
 
   date_prefix = Time.parse(created_at).strftime("%Y-%m-%d")

@@ -1,4 +1,14 @@
 (() => {
+  document.querySelectorAll("[data-editor-content]").forEach((link) => {
+    link.addEventListener("click", () => {
+      try {
+        localStorage.setItem("site-editor-import", link.dataset.editorContent);
+      } catch (_) {
+        // The GitHub link in the footer remains available when local storage is blocked.
+      }
+    });
+  });
+
   const preview = document.querySelector("[data-source-preview]");
   if (!preview) return;
 

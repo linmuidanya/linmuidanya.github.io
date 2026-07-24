@@ -1,0 +1,58 @@
+---
+layout: default
+title: Write Markdown
+description: Write and preview a Markdown document before publishing it through GitHub.
+permalink: /write/
+---
+<section class="shell page-intro editor-intro">
+  <p class="eyebrow">Write</p>
+  <h1>Markdown editor</h1>
+</section>
+
+<section class="shell editor" data-editor data-repository="{{ site.repository }}">
+  <form class="editor-fields" data-editor-form>
+    <div class="editor-form-heading">
+      <h2>Document</h2>
+      <span data-save-status>Draft saved locally</span>
+    </div>
+
+    <div class="editor-meta-grid">
+      <label><span>Destination</span><select name="destination"><option value="resources/markdown">Markdown resource</option><option value="resources/posts">Blog post</option><option value="resources/documents">Document metadata</option><option value="resources/images">Image metadata</option><option value="resources/source">Source metadata</option></select></label>
+      <label><span>Filename</span><input name="filename" type="text" value="untitled" spellcheck="false" required><small>.md is added automatically</small></label>
+      <label class="editor-wide"><span>Title</span><input name="title" type="text" value="Untitled document" required></label>
+      <label class="editor-wide"><span>Description</span><input name="description" type="text" value="A short description of this document."></label>
+      <label><span>Type</span><input name="type" type="text" value="Markdown"></label>
+      <label><span>Tags</span><input name="tags" type="text" value="notes" placeholder="math, lean, notes"><small>Comma-separated</small></label>
+    </div>
+
+    <label class="editor-body-label"><span>Markdown</span><textarea name="body" data-editor-input spellcheck="true">## First section
+
+Write your Markdown here. Inline mathematics such as $e^{i\pi} + 1 = 0$ is rendered in the preview.
+
+### A smaller heading
+
+- Lists work
+- Code blocks work
+- The outline updates automatically
+</textarea></label>
+
+    <div class="editor-commands">
+      <button class="button button-primary" type="button" data-editor-publish>Copy and open GitHub <span aria-hidden="true">↗</span></button>
+      <button class="button button-secondary" type="button" data-editor-download>Download .md</button>
+      <button class="text-button" type="button" data-editor-reset>Reset draft</button>
+    </div>
+    <p class="editor-message" data-editor-message role="status"></p>
+  </form>
+
+  <section class="editor-preview-panel">
+    <div class="editor-preview-heading"><h2>Preview</h2><span data-preview-path></span></div>
+    <div class="editor-preview-layout">
+      <article class="prose editor-preview" data-editor-preview></article>
+      <nav class="content-outline editor-outline" data-editor-outline aria-label="Preview outline"></nav>
+    </div>
+  </section>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.7/dist/purify.min.js" defer></script>
+<script src="{{ '/assets/js/editor.js' | relative_url }}" defer></script>

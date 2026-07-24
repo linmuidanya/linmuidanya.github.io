@@ -7,70 +7,26 @@ permalink: /resources/
 <section class="shell page-intro">
   <p class="eyebrow">02 / Resources</p>
   <h1>Things worth opening.</h1>
-  <p>Keep each file beside a Markdown sidecar that describes it. The build reads those sidecars, creates a preview page, and updates this shelf automatically.</p>
+  <p>Documents, images, Markdown, and source code in one compact library.</p>
 </section>
 
-<section class="shell resource-section" id="documents">
-  <div class="resource-section-heading"><span class="resource-icon resource-icon-pdf">PDF</span><h2>Documents</h2></div>
-  <div class="resource-grid">
-    {% for item in site.data.resources.documents %}
-      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
-        <span class="resource-card-type">{{ item.type }}</span>
-        <strong>{{ item.title }}</strong>
-        <span>{{ item.description }}</span>
-        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-    {% endfor %}
+<section class="shell resource-library" data-resource-filter-root>
+  <div class="resource-library-toolbar">
+    <div><p class="filter-label">Browse by type</p><a class="resource-write-link" href="{{ '/write/' | relative_url }}">Write Markdown <span aria-hidden="true">→</span></a></div>
+    <div class="filter-bar" data-resource-filter aria-label="Filter resources by type">
+      <button class="filter-button is-active" type="button" data-resource-filter-value="all" aria-pressed="true">All</button>
+      <button class="filter-button" type="button" data-resource-filter-value="documents" aria-pressed="false">Documents</button>
+      <button class="filter-button" type="button" data-resource-filter-value="images" aria-pressed="false">Images</button>
+      <button class="filter-button" type="button" data-resource-filter-value="markdown" aria-pressed="false">Markdown</button>
+      <button class="filter-button" type="button" data-resource-filter-value="source" aria-pressed="false">Source</button>
+    </div>
   </div>
-  <p class="resource-hint">Put <code>lecture-notes.pdf</code> and <code>lecture-notes.md</code> together in <code>resources/documents/</code>.</p>
-</section>
 
-<section class="shell resource-section" id="images">
-  <div class="resource-section-heading"><span class="resource-icon resource-icon-image">IMG</span><h2>Images</h2></div>
-  <div class="resource-grid">
-    {% for item in site.data.resources.images %}
-      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
-        {% if item.kind == "image" %}<img class="resource-card-thumb" src="{{ item.path | relative_url }}" alt="">{% endif %}
-        <span class="resource-card-type">{{ item.type }}</span>
-        <strong>{{ item.title }}</strong>
-        <span>{{ item.description }}</span>
-        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-    {% endfor %}
+  <div class="resource-grid" aria-label="All resources">
+    {% for item in site.data.resources.documents %}{% include resource-card.html item=item category="documents" %}{% endfor %}
+    {% for item in site.data.resources.images %}{% include resource-card.html item=item category="images" %}{% endfor %}
+    {% for item in site.data.resources.markdown %}{% include resource-card.html item=item category="markdown" %}{% endfor %}
+    {% for item in site.data.resources.source %}{% include resource-card.html item=item category="source" %}{% endfor %}
   </div>
-  <p class="resource-hint">Put <code>diagram.png</code> and <code>diagram.md</code> together in <code>resources/images/</code>.</p>
-</section>
-
-<section class="shell resource-section" id="markdown">
-  <div class="resource-section-heading"><span class="resource-icon resource-icon-markdown">MD</span><h2>Markdown</h2></div>
-  <div class="resource-grid">
-    {% for item in site.data.resources.markdown %}
-      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
-        <span class="resource-card-type">{{ item.type }}</span>
-        <strong>{{ item.title }}</strong>
-        <span>{{ item.description }}</span>
-        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-    {% endfor %}
-  </div>
-  <p class="resource-hint">Put standalone Markdown files in <code>resources/markdown/</code>.</p>
-</section>
-
-<section class="shell resource-section" id="source">
-  <div class="resource-section-heading"><span class="resource-icon resource-icon-code">&lt;/&gt;</span><h2>Source code</h2></div>
-  <div class="resource-grid">
-    {% for item in site.data.resources.source %}
-      <a class="resource-card" href="{{ item.preview_path | relative_url }}">
-        <span class="resource-card-type">{{ item.type }}</span>
-        <strong>{{ item.title }}</strong>
-        <span>{{ item.description }}</span>
-        {% if item.tags %}<span class="resource-tags">{% for tag in item.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-    {% endfor %}
-  </div>
-  <p class="resource-hint">Keep <code>hello.lean</code> and <code>hello.md</code> together in <code>resources/source/</code>.</p>
+  <p class="empty-state resource-filter-empty" data-resource-filter-empty hidden>No resources use that filter yet.</p>
 </section>

@@ -9,7 +9,7 @@ This folder is for files you want people to open directly.
 
 ## Add a blog post
 
-Create `resources/posts/my-topic.md` with front matter like this:
+Use the site's **Write** page or create `resources/posts/my-topic.md` with front matter like this:
 
 ```yaml
 ---

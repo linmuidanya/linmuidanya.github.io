@@ -1,0 +1,11 @@
+<article class="resource-card" data-resource-card data-resource-kind="{{ include.category }}" data-resource-tags="{% for tag in include.item.tags %}{{ tag | slugify }} {% endfor %}">
+  <a class="resource-card-link" href="{{ include.item.preview_path | relative_url }}">
+    {% if include.item.kind == "image" %}<img class="resource-card-thumb" src="{{ include.item.path | relative_url }}" alt="">{% else %}<div class="resource-card-mark resource-card-mark-{{ include.category }}" aria-hidden="true">{{ include.item.type }}</div>{% endif %}
+    <div class="resource-card-body">
+      <div class="resource-card-meta"><span>{{ include.category }}</span><span>{{ include.item.type }}{% if include.item.size %} / {{ include.item.size }}{% endif %}</span></div>
+      <div class="resource-card-title"><strong>{{ include.item.title }}</strong><span aria-hidden="true">↗</span></div>
+      {% if include.item.description %}<span class="resource-card-description">{{ include.item.description }}</span>{% endif %}
+    </div>
+  </a>
+  {% if include.item.tags %}<div class="resource-tags" aria-label="Tags">{% for tag in include.item.tags %}<button class="tag resource-tag-button" type="button" data-resource-tag-value="{{ tag | slugify }}" aria-pressed="false">{{ tag }}</button>{% endfor %}</div>{% endif %}
+</article>

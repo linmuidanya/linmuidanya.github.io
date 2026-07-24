@@ -2,6 +2,7 @@
 
 # Generate the resource catalogue and preview pages from resources/*.
 require "date"
+require "base64"
 require "digest"
 require "fileutils"
 require "pathname"
@@ -18,7 +19,7 @@ CATEGORIES = {
   },
   "images" => {
     directory: ROOT.join("resources", "images"),
-    extensions: %w[.png .jpg .jpeg .gif .webp .avif]
+    extensions: %w[.png .jpg .jpeg .gif .webp .avif .svg]
   },
   "markdown" => {
     directory: ROOT.join("resources", "markdown"),
@@ -32,7 +33,7 @@ CATEGORIES = {
 
 TEXT_EXTENSIONS = %w[
   .c .cc .cpp .css .csv .h .hpp .html .java .js .json .lean .lua .m .md
-  .php .py .r .rb .rs .scala .sh .sql .swift .tex .toml .ts .txt .xml .yaml .yml
+  .hs .lhs .php .py .r .rb .rs .scala .sh .sql .swift .tex .toml .ts .txt .xml .yaml .yml
 ].freeze
 
 def read_markdown(path)
@@ -49,6 +50,17 @@ end
 
 def display_title(stem)
   stem.tr("-_", "  ").split.map(&:capitalize).join(" ")
+end
+
+def format_size(bytes)
+  units = ["B", "KB", "MB", "GB"]
+  value = bytes.to_f
+  unit = 0
+  while value >= 1024 && unit < units.length - 1
+    value /= 1024
+    unit += 1
+  end
+  unit.zero? ? "#{value.to_i} #{units[unit]}" : format("%.1f %s", value, units[unit])
 end
 
 def slugify(value)
@@ -112,7 +124,9 @@ CATEGORIES.each do |name, config|
         "description" => metadata["description"] || "",
         "type" => metadata["type"] || attachment.extname.delete(".").upcase,
         "kind" => kind,
+        "category" => name,
         "path" => raw_path,
+        "size" => format_size(attachment.size),
         "preview_path" => preview_path
       }
       entry["tags"] = metadata["tags"] if metadata["tags"]
@@ -122,7 +136,8 @@ CATEGORIES.each do |name, config|
         "layout" => "resource",
         "permalink" => preview_path,
         "file_path" => raw_path,
-        "source_path" => source_path
+        "source_path" => source_path,
+        "editor_content" => Base64.strict_encode64(sidecar.read)
       )
       PREVIEWS_DIR.join("#{preview_name}.md").write(
         "#{YAML.dump(preview_metadata)}---\n\n#{body.lstrip}"

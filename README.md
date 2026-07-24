@@ -17,6 +17,7 @@ Open `http://localhost:4000`.
 
 ## The update workflow
 
+- Open `/write/` on the site to draft, preview, and download Markdown. **Copy and open GitHub** sends new files or edits through GitHub's authenticated editor.
 - Add a post to `resources/posts/any-clear-name.md`; a date is not required in the filename.
 - Put a file and same-named Markdown sidecar together in `resources/documents/`, `resources/images/`, or `resources/source/`.
 - Put standalone Markdown documents in `resources/markdown/`.
@@ -24,6 +25,8 @@ Open `http://localhost:4000`.
 - Commit and push to `main`. GitHub Pages rebuilds the site automatically.
 
 The repository includes `.github/workflows/pages.yml`, which derives post dates from Git history, generates resource preview pages, regenerates `_data/resources.yml`, builds the Jekyll site, and deploys it from `main`. In the repository Settings, set Pages to use **GitHub Actions** once; later pushes need no extra configuration.
+
+The browser editor saves one draft in local browser storage. It does not contain a GitHub token: publishing copies the complete Markdown file and opens the signed-in GitHub editor, where you paste and commit it.
 
 ## Post metadata
 
