@@ -187,6 +187,9 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
 .resource-filter-empty { margin: 24px 0 0; }
 
 .resource-article { padding-top: 72px; padding-bottom: 112px; }
+.resource-kind-pdf { max-width: 1400px; }
+.resource-kind-pdf .resource-content-layout { grid-template-columns: minmax(0, 1fr); }
+.resource-kind-pdf .resource-outline { display: none; }
 .resource-header { padding-bottom: 42px; }
 .resource-header .back-link { margin-bottom: 42px; }
 .resource-header h1 { font-size: 3.4rem; }
