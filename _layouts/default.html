@@ -8,11 +8,15 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-      svg: { fontCache: 'global' }
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      output: { font: 'mathjax-pagella' }
     };
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml-nofont.js"></script>
   <script src="{{ '/assets/js/filter.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/resource-filter.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/outline.js' | relative_url }}" defer></script>
@@ -41,8 +45,12 @@
       <span>Built with plain files and GitHub Pages.</span>
       <span class="footer-rule" aria-hidden="true"></span>
       <span>{{ site.time | date: "%Y" }} / Linmuidanya</span>
-      {% assign edit_path = page.source_path | default: page.path | remove_first: '/' %}
-      <a class="footer-edit" href="https://github.com/{{ site.repository }}/edit/main/{{ edit_path }}" target="_blank" rel="noreferrer">Edit this page on GitHub <span aria-hidden="true">↗</span></a>
+      {% if page.url == '/' %}
+        <a class="footer-edit" href="{{ '/edit-home/' | relative_url }}">Edit this page</a>
+      {% else %}
+        {% assign edit_path = page.source_path | default: page.path | remove_first: '/' %}
+        <a class="footer-edit" href="https://github.com/{{ site.repository }}/edit/main/{{ edit_path }}" target="_blank" rel="noreferrer">Edit this page on GitHub <span aria-hidden="true">↗</span></a>
+      {% endif %}
     </div>
   </footer>
 </body>

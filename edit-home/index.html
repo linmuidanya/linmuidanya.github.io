@@ -1,0 +1,61 @@
+---
+layout: default
+title: Edit Homepage
+description: Edit the text shown on the homepage.
+permalink: /edit-home/
+source_path: _data/homepage.yml
+---
+<section class="shell page-intro editor-intro">
+  <p class="eyebrow">Homepage</p>
+  <h1>Edit homepage</h1>
+</section>
+
+<section class="shell editor home-editor" data-home-editor data-repository="{{ site.repository }}">
+  <form class="editor-fields" data-home-form>
+    <div class="editor-meta-card">
+      <div class="editor-form-heading">
+        <h2>Homepage text</h2>
+        <span data-home-save-status>Draft saved locally</span>
+      </div>
+
+      <div class="editor-meta-grid">
+        <label class="editor-wide"><span>Small heading</span><input name="eyebrow" type="text" value="{{ site.data.homepage.eyebrow | escape }}" required></label>
+        <label class="editor-wide"><span>Title</span><input name="title" type="text" value="{{ site.data.homepage.title | escape }}" required></label>
+        <label class="editor-wide"><span>Introduction</span><textarea name="introduction" required>{{ site.data.homepage.introduction | escape }}</textarea></label>
+        <label><span>Resources label</span><input name="resources_label" type="text" value="{{ site.data.homepage.resources_label | escape }}" required></label>
+        <label><span>Resources heading</span><input name="resources_title" type="text" value="{{ site.data.homepage.resources_title | escape }}" required></label>
+        <label><span>Recent files label</span><input name="recent_label" type="text" value="{{ site.data.homepage.recent_label | escape }}" required></label>
+        <label><span>Recent files heading</span><input name="recent_title" type="text" value="{{ site.data.homepage.recent_title | escape }}" required></label>
+      </div>
+    </div>
+
+    <div class="editor-commands">
+      <button class="button button-primary" type="button" data-home-submit>Submit through GitHub <span aria-hidden="true">&nearr;</span></button>
+      <button class="text-button" type="button" data-home-reset>Reset draft</button>
+    </div>
+    <p class="editor-message" data-home-message role="status"></p>
+  </form>
+
+  <section class="editor-preview-panel">
+    <div class="editor-preview-heading"><h2>Preview</h2><span>/</span></div>
+    <div class="home-editor-preview">
+      <div class="home-preview-hero">
+        <p class="eyebrow" data-home-preview="eyebrow"></p>
+        <h1 data-home-preview="title"></h1>
+        <p class="hero-lede" data-home-preview="introduction"></p>
+      </div>
+      <div class="home-preview-sections">
+        <section class="home-preview-section">
+          <p class="eyebrow" data-home-preview="resources_label"></p>
+          <h2 data-home-preview="resources_title"></h2>
+        </section>
+        <section class="home-preview-section">
+          <p class="eyebrow" data-home-preview="recent_label"></p>
+          <h2 data-home-preview="recent_title"></h2>
+        </section>
+      </div>
+    </div>
+  </section>
+</section>
+
+<script src="{{ '/assets/js/home-editor.js' | relative_url }}" defer></script>

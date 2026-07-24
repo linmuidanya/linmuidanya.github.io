@@ -18,6 +18,7 @@ Open `http://localhost:4000`.
 ## The update workflow
 
 - Open `/write/` on the site to draft, preview, and download Markdown. **Copy and open GitHub** sends new files or edits through GitHub's authenticated editor.
+- Use **Edit homepage** on the homepage to change its title, introduction, and section headings with a live preview, then submit through GitHub.
 - Add a post to `resources/posts/any-clear-name.md`; a date is not required in the filename.
 - Put a file and same-named Markdown sidecar together in `resources/documents/`, `resources/images/`, or `resources/source/`.
 - Put standalone Markdown documents in `resources/markdown/`.
