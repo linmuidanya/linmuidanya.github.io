@@ -16,9 +16,14 @@ layout: default
           <div><dt>Size</dt><dd>{{ page.size }}</dd></div>
           <div><dt>Folder</dt><dd>{{ page.category }}</dd></div>
         </dl>
-        {% if page.tags %}<div class="tag-list" aria-label="Tags">{% for tag in page.tags %}<a class="tag" href="{{ '/resources/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% endfor %}</div>{% endif %}
       </aside>
     </div>
+    {% if page.tags %}
+      <nav class="resource-tag-strip" aria-label="Tags">
+        <span class="resource-tag-label">Tags</span>
+        {% for tag in page.tags %}<a class="tag" href="{{ '/resources/' | relative_url }}?tag={{ tag | slugify }}">{{ tag }}</a>{% endfor %}
+      </nav>
+    {% endif %}
     <div class="resource-actions">
       {% if page.kind == "markdown" %}
         <a class="button button-primary" href="https://github.com/{{ site.repository }}/blob/main/{{ page.source_path }}" target="_blank" rel="noreferrer">View Markdown source <span aria-hidden="true">↗</span></a>
