@@ -21,14 +21,27 @@
   <script src="{{ '/assets/js/filter.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/resource-filter.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/outline.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/profile-card.js' | relative_url }}" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="shell nav-wrap">
-      <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Linmuidanya home">
+      <button class="wordmark" type="button" data-profile-toggle aria-expanded="false" aria-controls="profile-card">
         <span class="wordmark-mark">L</span>
         <span>linmuidanya</span>
-      </a>
+      </button>
+      <aside class="profile-card" id="profile-card" data-profile-card hidden>
+        <div class="profile-card-heading">
+          <span class="profile-card-monogram" aria-hidden="true">L</span>
+          <div><p class="eyebrow">Profile</p><strong>Linmuidanya</strong></div>
+        </div>
+        <p>{{ site.data.homepage.introduction }}</p>
+        <p class="profile-card-topics">{{ site.data.homepage.eyebrow }}</p>
+        <div class="profile-card-actions">
+          <a href="{{ '/' | relative_url }}">Homepage <span aria-hidden="true">→</span></a>
+          <a href="https://github.com/{{ site.repository }}" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </aside>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-active"{% endif %}>Home</a>
         <a href="{{ '/notes/' | relative_url }}"{% if page.url contains '/notes' %} class="is-active"{% endif %}>Writing</a>

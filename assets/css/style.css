@@ -74,9 +74,21 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
   background: rgba(247, 246, 241, 0.96);
 }
 
-.nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.wordmark { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; letter-spacing: 0; }
+.nav-wrap { position: relative; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; border: 0; background: transparent; color: inherit; padding: 0; cursor: pointer; font: 650 1rem var(--sans); letter-spacing: 0; }
+.wordmark:hover .wordmark-mark, .wordmark[aria-expanded="true"] .wordmark-mark { border-color: var(--teal); background: var(--teal); color: #fff; }
 .wordmark-mark { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 700 15px var(--serif); }
+.profile-card { position: absolute; top: calc(100% + 1px); left: 32px; z-index: 8; width: min(390px, calc(100vw - 64px)); border: 1px solid var(--line-strong); border-top: 3px solid var(--teal); background: var(--paper); box-shadow: 0 18px 42px rgba(32, 38, 37, 0.14); padding: 22px; }
+.profile-card[hidden] { display: none; }
+.profile-card-heading { display: flex; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.profile-card-heading .eyebrow { margin: 0 0 3px; }
+.profile-card-heading strong { font: 500 1.35rem/1.15 var(--serif); }
+.profile-card-monogram { display: inline-grid; flex: 0 0 auto; place-items: center; width: 48px; height: 48px; border: 1px solid var(--ink); color: var(--teal-dark); font: 700 1.4rem var(--serif); }
+.profile-card > p { margin: 16px 0 0; color: var(--ink-soft); font-size: 0.86rem; line-height: 1.55; }
+.profile-card .profile-card-topics { color: var(--ink-muted); font: 0.65rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.profile-card-actions { display: flex; gap: 18px; margin-top: 20px; border-top: 1px solid var(--line); padding-top: 14px; }
+.profile-card-actions a { border-bottom: 1px solid var(--line-strong); color: var(--teal-dark); font-size: 0.8rem; font-weight: 650; }
+.profile-card-actions a:hover { border-color: var(--teal); color: var(--teal); }
 .site-nav { display: flex; align-items: center; gap: 24px; color: var(--ink-soft); font-size: 0.9rem; }
 .site-nav a { border-bottom: 1px solid transparent; padding: 8px 0; }
 .site-nav a:hover, .site-nav a.is-active { border-color: var(--teal); color: var(--teal-dark); }
@@ -336,6 +348,7 @@ code { color: var(--teal-dark); font: 0.9em var(--mono); }
 @media (max-width: 800px) {
   .shell { padding-left: 21px; padding-right: 21px; }
   .nav-wrap { min-height: 68px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 2px; }
+  .profile-card { top: 68px; left: 21px; width: min(390px, calc(100vw - 42px)); }
   .site-nav { gap: 16px; font-size: 0.82rem; }
   .hero { min-height: auto; padding-top: 48px; padding-bottom: 52px; }
   .hero h1 { font-size: 2.25rem; }
