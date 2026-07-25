@@ -6,6 +6,7 @@
   const typeButtons = [...root.querySelectorAll("[data-resource-filter-value]")];
   const tagButtons = [...root.querySelectorAll("[data-resource-tag-value]")];
   const empty = root.querySelector("[data-resource-filter-empty]");
+  const pinnedSection = root.querySelector("[data-pinned-resources]");
 
   const knownTypes = new Set(typeButtons.map((button) => button.dataset.resourceFilterValue));
   const knownTags = new Set(tagButtons.map((button) => button.dataset.resourceTagValue));
@@ -30,6 +31,11 @@
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-pressed", String(active));
     });
+    if (pinnedSection) {
+      pinnedSection.hidden = ![...pinnedSection.querySelectorAll("[data-resource-card]")].some(
+        (card) => !card.hidden
+      );
+    }
     if (empty) empty.hidden = visible !== 0;
   };
 

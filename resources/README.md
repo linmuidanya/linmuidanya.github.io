@@ -38,8 +38,12 @@ title: Lecture notes
 description: Notes from the formal methods course.
 type: PDF
 tags: [lean, mathematics]
+pinned: true
+pin_weight: 10
 ---
 ```
+
+Set `pinned: true` to keep a resource in the section at the top of the shelf. Lower `pin_weight` values appear first. The **Upload PDF** page creates both the PDF and sidecar for you.
 
 Use the same pattern in `resources/images/` or `resources/source/`. For a standalone Markdown document, put the file in `resources/markdown/` with its own front matter. The Pages workflow runs `scripts/build_resources.rb` before Jekyll, finds matching pairs, creates preview pages, and regenerates `_data/resources.yml`. You do not edit that generated file.
 
